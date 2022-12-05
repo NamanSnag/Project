@@ -1,5 +1,11 @@
 const User = require('../model/user');
 
+module.exports.profile = function(req, res){
+    return res.render('user_profile', {
+        title: 'User Profile'
+    })
+}
+
 module.exports.signUp = function(request, response){
     return response.render('user_sign_up.ejs',{
         title: 'Sign Up'
@@ -15,7 +21,7 @@ module.exports.signIn = function(request, response){
 // sign up data 
 module.exports.create = function(request, response){
     // if password and confirm password is match or not
-    if(request.body.passwords != request.body.Confirm_password){
+    if(request.body.password != request.body.Confirm_password){
         return response.redirect('back');
     }
 
@@ -43,11 +49,5 @@ module.exports.create = function(request, response){
 
 // sign in user
 module.exports.userSession = function(request, response){
-    User.find({ 
-        email: request.body.email,
-        password: request.body.password
-    },(error,result)=>{
-        if(error)(error);
-        return response.render('home'); 
-    });
+   return response.redirect('/');
 };

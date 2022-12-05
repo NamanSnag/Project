@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const db = mongoose.connection;
 
 //connect to the database
-mongoose.connect('mongodb://localhost/toDoApp');
+mongoose.connect('mongodb://localhost/Passbook');
 
 //error
 db.on('error', function(err) { console.log(err.message); });

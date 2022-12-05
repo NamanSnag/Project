@@ -14,6 +14,12 @@ const app = express();
 // // layout
 const expressLayout = require('express-ejs-layouts');
 
+// used for session cookie
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport_local_strategy');
+
+
 // view engine
 app.set('view engine', 'ejs');
 
@@ -32,7 +38,22 @@ app.use(cookieParser());
 // urlencoded add to extract data from
 app.use(express.urlencoded());
 
-app.use(require('./route'));
+// for authentication purposes
+app.use(session({
+    name: 'codeial',
+    // TODO change the secret before deployment in production mode
+    secret: 'blahsomething',
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        maxAge: (1000 * 60 * 100)
+    }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/', require('./route'));
 
 app.listen(port, (error)=>{
     if(error)(error);
