@@ -1,18 +1,24 @@
-const User = require('../model/user');
+const user = require('../model/user');
 
 module.exports.profile = function(req, res){
-    return res.render('user_profile', {
+    return res.render('user_profile.ejs', {
         title: 'User Profile'
     })
 }
 
 module.exports.signUp = function(request, response){
+    if (request.isAuthenticated()) {
+        return response.redirect('/user/profile');
+    }
     return response.render('user_sign_up.ejs',{
         title: 'Sign Up'
     });
 };
 
 module.exports.signIn = function(request, response){
+    if (request.isAuthenticated()) {
+        return response.redirect('/user/profile');
+    }
     return response.render('user_sign_in.ejs',{
         title: 'Sign In'
     });
@@ -50,4 +56,12 @@ module.exports.create = function(request, response){
 // sign in user
 module.exports.userSession = function(request, response){
    return response.redirect('/');
+};
+
+// sign out user
+module.exports.sessionEnd =function(req, res, next) {
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      res.redirect('/');
+    });
 };
