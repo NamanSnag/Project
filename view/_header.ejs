@@ -1,28 +1,36 @@
-<header>
-    head
-
-    <ul>
-        <% if(locals.user){ %>
-            <a href="/user/profile"><li>
-                <%= user.name %>
-            </li></a>
-
-            <a href="/user/sign-out">
+<header class="navigation">
+    <div id="logo">
+        <a href="/"><i class="fa fa-wechat" style="font-size:22px; color: white;"> Social-Chat</i></a>
+    </div>   
+    <nav>
+        <ul class="nav-list">
+            <% if(locals.user){ %>
                 <li>
-                    Sign-Out
+                    <a href="/user/profile">
+                        <%= user.name %>
+                    </a>
                 </li>
-            </a>
-        <% }else{ %>
-            <a href="/user/sign-in">
+                
                 <li>
-                    Sign-In
+                    <a href="/user/sign-out">
+                        Sign-Out
+                    </a>
                 </li>
-            </a>
-            <a href="/user/sign-up">
-                <li>
-                    Sign-Up
-                </li>
-            </a>
-        <% } %>
-    </ul>
+                
+            <% }else{ %>
+                
+                    <li>
+                        <a href="/user/sign-in">
+                            Sign-In
+                        </a>
+                        
+                    </li>
+                    <li>
+                        <a href="/user/sign-up">
+                            Sign-Up
+                        </a>
+                    </li>
+            <% } %>
+        </ul>
+      </nav>
 </header>

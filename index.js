@@ -14,12 +14,19 @@ const app = express();
 // // layout
 const expressLayout = require('express-ejs-layouts');
 
-// used for session cookie
-const session = require('express-session');
-const passport = require('passport');
-const passportLocal = require('./config/passport_local_strategy');
+// sass styles
+const sassMiddleware = require('node-sass-middleware');
+app.use(sassMiddleware({
+    /* Options */
+    src: './static/scss',
+    dest: './static/css',
+    debug: true,
+    outputStyle: 'extended',
+    prefix:  '/css'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
+}));
 
-const MongoStore = require('connect-mongo');
+// css files
+app.use(express.static(path.join(__dirname, 'static')));
 
 // view engine
 app.set('view engine', 'ejs');
@@ -32,7 +39,6 @@ app.use(expressLayout);
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 
-
 // cookies setup
 app.use(cookieParser());
 
@@ -40,6 +46,11 @@ app.use(cookieParser());
 app.use(express.urlencoded());
 
 // for authentication purposes
+// used for session cookie
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport_local_strategy');
+const MongoStore = require('connect-mongo');
 app.use(session({
     name: 'codeial',
     // TODO change the secret before deployment in production mode
