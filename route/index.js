@@ -8,6 +8,9 @@ const homeController = require('../controller/home_Controller');
 // user routes link
 router.use('/user', require('./user'));
 
+// 
+router.use('/posts', require('./posts'));
+
 // all routes
 router.get('/', homeController.homepage);
 

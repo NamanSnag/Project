@@ -1,1 +1,27 @@
-<h1>body</h1>
+<main class="home">
+    <div class="background"></div>
+    <div class="text">
+        <p id="wel-head">Welcome To Social-Chat</p>
+        <p>A place where your share your memories, Experiences and Chat with others</p>
+    </div>
+    <form action="/posts/create" method="post">
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Comment</label>
+            <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Post</button>
+        </div>
+        <div class="post-Container">
+            <ul>
+                <% for(post of posts){ %>
+                    <li class="post-item"><%= post.content %></li>
+                    <small><%= post.user.name %></small>
+                <% } %>
+            </ul>
+        </div>
+    </form>
+    <div style="min-height: 100px">
+
+    </div>
+</main>

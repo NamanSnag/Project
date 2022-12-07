@@ -1,0 +1,28 @@
+.home .background {
+  height: 80vh;
+  background-image: url(../image/home-bg.png);
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.home .text {
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 70%;
+  padding: 20px;
+  text-align: center; }
+  .home .text p {
+    font-size: 20px;
+    color: #f1f1f1; }
+  .home .text #wel-head {
+    color: #f3ff09;
+    font-weight: bold;
+    font-size: 40px; }

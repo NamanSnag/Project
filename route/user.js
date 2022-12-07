@@ -8,10 +8,10 @@ const userController = require('../controller/user_Controller');
 
 router.get('/profile',passport.checkAuthentication ,userController.profile);
 
-// signup route
+// sign up page route
 router.get('/sign-up', userController.signUp);
 
-// signin route
+// sign in page route
 router.get('/sign-in', userController.signIn);
 
 // sign up route

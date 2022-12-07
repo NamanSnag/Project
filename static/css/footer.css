@@ -1,0 +1,24 @@
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  color: blue;
+  height: 80px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 8px, rgba(0, 0, 0, 0.12) 0px -6px 10px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 6px 7px, rgba(0, 0, 0, 0.09) 0px -3px 5px; }
+  footer .container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; }
+    footer .container .row {
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: row;
+      width: 40%; }
+      footer .container .row .footer-col {
+        display: flex;
+        justify-content: space-evenly; }
+        footer .container .row .footer-col .social-links a i {
+          color: #f03709;
+          margin: 0px 10px 0px 10px; }
