@@ -1,4 +1,4 @@
-const user = require('../model/user');
+const User = require('../model/user');
 
 module.exports.profile = function(req, res){
     return res.render('user_profile.ejs', {
@@ -47,6 +47,7 @@ module.exports.create = function(request, response){
             });
             console.log("user setup");
         }else{
+            console.log("user already exists");
             return response.redirect('back');
         }
     });
