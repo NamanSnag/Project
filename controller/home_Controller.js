@@ -2,7 +2,13 @@ const post = require('../model/post');
 
 
 module.exports.homepage = function(request, response){
-    post.find({}).populate("user").exec(function(err, user) {
+    post.find({})
+    .populate("user")
+    .populate({
+        path: 'comments',
+        populate: 'user'
+    })
+    .exec(function(err, user) {
         if(err){
             return response.send(err);
         }

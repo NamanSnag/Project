@@ -11,6 +11,9 @@ router.use('/user', require('./user'));
 // 
 router.use('/posts', require('./posts'));
 
+// comments 
+router.use('/comments', require('./comments'));
+
 // all routes
 router.get('/', homeController.homepage);
 
