@@ -20,9 +20,16 @@
                 <div class="col-sm-5 col-md-6 col-12 pb-4">
                     <h1>Posts</h1>
                     <% for(post of posts){ %>
-                        <div class="comment mt-4 text-justify float-left border border-4">
-                            <li class="text-center"><span><%= post.user.name %></span></li>
-                            <li class="list-group-item"><%= post.content %></li>
+                        <div class="comment mt-4 text-justify float-left border border-4 d-flex justify-content-between">
+                            <div>
+                                <li class="text-center"><span><%= post.user.name %></span></li>
+                                <li class="list-group-item"><%= post.content %></li>
+                            </div>
+                            <% if(locals.user && (locals.user.id == post.user.id)){ %>
+                                <div>
+                                    <a href="/posts/destroy/<%= post.id %>" ><button type="button" class="btn btn-outline-danger">X</button></a>
+                                </div>
+                            <% } %>
                         </div>
                         <div class="post-comments">
                             <% if (locals.user){ %>
@@ -36,19 +43,41 @@
                         </div>
                         <div class="post-comments">
                             <% for(comment of post.comments){ %>
-                                <li>
-                                    <%= comment.content %>
-                                    <br>
-                                    <small>
-                                        <%= comment.user.name %></small>
-                                    </small>
-                                </li>
+
+                                <div class="d-flex ustify-content-between">
+                                    <div>
+                                        <li>
+                                            <%= comment.content %>
+                                            <br>
+                                            <small>
+                                                <%= comment.user.name %></small>
+                                            </small>
+                                        </li>
+                                    </div>
+    
+                                    <% if(locals.user && (locals.user.id == comment.user.id)){ %>
+                                        <div>
+                                            <a href="/comments/destroy/<%= comment.id %>" ><button type="button" class="btn btn-danger">X</button></a>
+                                        </div>
+                                    <% } %>
+                                </div>
+                                <hr>
                             <% } %>
                     <% } %>
                 </div>
             </div>
         </div>
-    <div style="min-height: 100px">
+<hr>
+    <section id="user-friends">
+        <h4>Friends</h4>
+        <% for ( u of all_users ) { %>
+            <p>
+                <a href="/user/profile/<%= u.id %>"><%= u.name %></a>
+            </p>
+        <% } %>
+    </section>
+
+    <div style="min-height: 200px">
 
     </div>
 </main>
