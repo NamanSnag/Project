@@ -23,6 +23,7 @@ module.exports.update = function(req, res){
 
 module.exports.signUp = function(request, response){
     if (request.isAuthenticated()) {
+        request.flash('success', 'SignUp successful');
         return response.redirect('/user/profile');
     }
     return response.render('user_sign_up.ejs',{
@@ -58,6 +59,7 @@ module.exports.create = function(request, response){
                     return console.log('error in crating user',error);
                 };
                 console.log(request.body);
+                request.flash('success', 'successfull create user');
                 return response.redirect('/user/sign-in');
             });
             console.log("user setup");
@@ -71,13 +73,15 @@ module.exports.create = function(request, response){
 
 // sign in user
 module.exports.userSession = function(request, response){
-   return response.redirect('/');
+    request.flash('success', 'Login successful');
+    return response.redirect('/');
 };
 
 // sign out user
 module.exports.sessionEnd =function(req, res, next) {
     req.logout(function(err) {
       if (err) { return next(err); }
+      req.flash('success', 'LogOut successful');
       res.redirect('/');
     });
 };

@@ -16,6 +16,13 @@ const expressLayout = require('express-ejs-layouts');
 
 // sass styles
 const sassMiddleware = require('node-sass-middleware');
+
+// flash message
+const flash = require('connect-flash');
+
+// custom middleware for flash
+const flashmd = require('./config/middleware');
+
 app.use(sassMiddleware({
     /* Options */
     src: './static/scss',
@@ -75,6 +82,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+
+app.use(flash());
+
+app.use(flashmd.setFlash);
 
 app.use('/', require('./route'));
 
