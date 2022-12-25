@@ -9,7 +9,7 @@ const userController = require('../controller/user_Controller');
 router.get('/profile/:id' ,passport.checkAuthentication ,userController.profile);
 
 // update profile
-router.post('/update/:id', passport.checkAuthentication, userController.update);
+// router.post('/update/:id', passport.checkAuthentication, userController.update);
 
 // sign up page route
 router.get('/sign-up', userController.signUp);

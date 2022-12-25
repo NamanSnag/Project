@@ -1,0 +1,17 @@
+<div class="d-flex ustify-content-between">
+    <div>
+        <li>
+            <%= comment.content %>
+            <br>
+            <small>
+                <%= comment.user.name %></small>
+            </small>
+        </li>
+    </div>
+
+    <% if(locals.user && (locals.user.id == comment.user.id)){ %>
+        <div>
+            <a href="/comments/destroy/<%= comment.id %>" ><button type="button" class="btn btn-danger">X</button></a>
+        </div>
+    <% } %>
+</div>

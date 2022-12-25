@@ -49,6 +49,7 @@ app.set('layout extractScripts', true);
 // cookies setup
 app.use(cookieParser());
 
+
 // urlencoded add to extract data from
 app.use(express.urlencoded());
 
@@ -77,6 +78,8 @@ app.use(session({
         console.log("mongo store saved");
     })
 }));
+
+const passportJWT = require('./config/passport_jwt');
 
 app.use(passport.initialize());
 app.use(passport.session());

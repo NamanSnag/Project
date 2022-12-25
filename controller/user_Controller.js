@@ -10,16 +10,35 @@ module.exports.profile = function(req, res){
     
 }
 
-// update user profile
-module.exports.update = function(req, res){
-    if(req.user.id == req.params.id){
-        User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
-            return res.redirect('back');
-        })
-    }else{
-        return res.status(403).send('Can not be updated')
-    }
-}
+// // update user profile
+// module.exports.update = async function(req, res){
+//     // if(req.user.id == req.params.id){
+//     //     User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+//     //         return res.redirect('back');
+//     //     })
+//     // }else{
+//     //     return res.status(403).send('Can not be updated')
+//     // }
+//     if(req.body.id == req.params.id){
+//         try {
+//             let  user = User.findById(req.params.id);
+//             User.uploadedAvatar(req, res, (error){
+//                 if(error){
+//                     return res.status(500).send(error);
+//                 }
+//                 user.name = req.body.name;
+//                 user.email = req.body.email;
+//                 if(req.file){
+//                     user.avatar = User.avatarPath+'/'+req.file.filename;
+//                 }
+//                 user.save();
+//                 return res.redirect('back');
+//             })
+//         } catch (error) {
+//             return res.redirect('back');
+//         }
+//     }
+// }
 
 module.exports.signUp = function(request, response){
     if (request.isAuthenticated()) {
@@ -74,6 +93,7 @@ module.exports.create = function(request, response){
 // sign in user
 module.exports.userSession = function(request, response){
     request.flash('success', 'Login successful');
+    console.log(User.password);
     return response.redirect('/');
 };
 

@@ -17,4 +17,7 @@ router.use('/comments', require('./comments'));
 // all routes
 router.get('/', homeController.homepage);
 
+// versions file
+router.use('/api',require('./api'))
+
 module.exports = router;
